@@ -10,7 +10,9 @@ const searchClient = instantMeiliSearch(
   `${process.env.NEXT_PUBLIC_MEILISEARCH_BASEURL}`,
   `${process.env.NEXT_PUBLIC_MEILISEARCH_API_KEY}`
 );
-const Hit = ({ hit }: { hit: any }) => <Highlight attribute="name" hit={hit} />;
+const Hit = ({ hit }: { hit: any }) => {
+  return <Highlight attribute="name" hit={hit} />;
+};
 
 const Search = () => {
   return (
