@@ -8,7 +8,7 @@ const Hits = ({ hits }: { hits: any }) => {
       {hits.map((hit: any) => (
         <div
           key={hit.objectID}
-          className="p-4 border border-dy-blueishgrey rounded-md shadow-md
+          className="p-4 border border-dy-blueishgrey rounded-xl shadow-md
           space-y-2 bg-white"
         >
           <div className="hit-name text-dy-purple">
