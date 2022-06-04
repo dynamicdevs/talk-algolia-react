@@ -1,18 +1,11 @@
-import {
-  InstantSearch,
-  SearchBox,
-  Hits,
-  Highlight,
-} from "react-instantsearch-dom";
+import { InstantSearch, SearchBox } from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
+import { CustomHits } from "@/components";
 
 const searchClient = instantMeiliSearch(
   `${process.env.NEXT_PUBLIC_MEILISEARCH_BASEURL}`,
   `${process.env.NEXT_PUBLIC_MEILISEARCH_API_KEY}`
 );
-const Hit = ({ hit }: { hit: any }) => {
-  return <Highlight attribute="name" hit={hit} />;
-};
 
 const Search = () => {
   return (
@@ -23,7 +16,9 @@ const Search = () => {
           searchClient={searchClient}
         >
           <SearchBox />
-          <Hits hitComponent={Hit} />
+          <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <CustomHits />
+          </div>
         </InstantSearch>
       </div>
     </>
