@@ -1,4 +1,8 @@
-import { InstantSearch, SearchBox } from "react-instantsearch-dom";
+import {
+  InstantSearch,
+  SearchBox,
+  CurrentRefinements,
+} from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 import { CustomHits, Filters, CustomSortBy } from "@/components";
 
@@ -37,6 +41,7 @@ const Search = () => {
                   ]}
                 />
               </div>
+              <CurrentRefinements />
               <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 <CustomHits />
               </div>
