@@ -1,4 +1,4 @@
-import { InstantSearch, SearchBox } from "react-instantsearch-dom";
+import { InstantSearch, SearchBox, SortBy } from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 import { CustomHits, Filters } from "@/components";
 
@@ -20,8 +20,26 @@ const Search = () => {
             <div className="flex-shrink-0 w-80 space-y-3">
               <Filters />
             </div>
-            <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              <CustomHits />
+            <div className="space-y-5">
+              <div className="flex justify-end">
+                <SortBy
+                  defaultRefinement="steam-video-games"
+                  items={[
+                    { value: "steam-video-games", label: "Relevant" },
+                    {
+                      value: "steam-video-games:recommendationCount:desc",
+                      label: "Most Recommended",
+                    },
+                    {
+                      value: "steam-video-games:recommendationCount:asc",
+                      label: "Least Recommended",
+                    },
+                  ]}
+                />
+              </div>
+              <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <CustomHits />
+              </div>
             </div>
           </div>
         </InstantSearch>
