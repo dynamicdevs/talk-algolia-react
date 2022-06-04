@@ -14,13 +14,16 @@ export const Header = () => {
       className="sticky top-0 left-0 py-2 px-4
       flex justify-between items-center shadow-md bg-white"
     >
-      <div>
+      <div className="flex items-center space-x-4">
         <Link href="/">
           <img
             src="/images/dynamic-logo.jpg"
             alt="dynamic-logo"
             className="w-10 cursor-pointer"
           />
+        </Link>
+        <Link href="/search">
+          <a className="hidden md:block font-bold">Explore all</a>
         </Link>
       </div>
 
@@ -29,11 +32,13 @@ export const Header = () => {
       </div>
 
       <div className="flex items-center space-x-4">
-        <SymbolIcon
-          name="search"
-          type="solid"
-          className="block md:hidden w-5 h-5 text-dy-purple cursor-pointer"
-        />
+        <div className="block md:hidden ">
+          <SymbolIcon
+            name="search"
+            type="solid"
+            className="w-5 h-5 text-dy-purple cursor-pointer"
+          />
+        </div>
 
         {headerButtons.map((_, index) => (
           <Link key={index} href={_.href}>
