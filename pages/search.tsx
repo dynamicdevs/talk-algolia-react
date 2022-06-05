@@ -1,6 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { InstantSearch, SearchBox } from "react-instantsearch-dom";
+import {
+  InstantSearch,
+  SearchBox,
+  Pagination,
+  Configure,
+} from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 import {
   CustomHits,
@@ -19,12 +24,10 @@ const Search = () => {
   const [searchState, setSearchState] = useState<any>(router.query);
 
   const onSearchStateChange = (updatedSearchState: any) => {
-    console.log("onSearchStateChange");
     setSearchState(updatedSearchState);
   };
 
   useEffect(() => {
-    console.log("useEffect");
     onSearchStateChange(router.query);
   }, [router]);
 
@@ -38,6 +41,7 @@ const Search = () => {
           searchState={searchState}
           onSearchStateChange={onSearchStateChange}
         >
+          <Configure hitsPerPage={12} />
           <SearchBox className="hidden" />
           <div className="flex space-x-5">
             <div className="flex-shrink-0 w-80 space-y-3">
@@ -64,6 +68,7 @@ const Search = () => {
               <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 <CustomHits />
               </div>
+              <Pagination showLast />
             </div>
           </div>
         </InstantSearch>
