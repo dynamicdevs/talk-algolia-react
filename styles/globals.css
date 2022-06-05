@@ -17,4 +17,15 @@
     -webkit-box-orient: vertical;  
     overflow: hidden;
 }
+
+.ais-Pagination-list {
+    @apply flex justify-center space-x-1;
   
+  }
+  .ais-Pagination-item {
+    @apply p-2 rounded-md border bg-dy-gray-1;
+  }
+  .ais-Pagination-item--selected {
+    @apply font-bold bg-dy-gray-2;
+  
+  }
