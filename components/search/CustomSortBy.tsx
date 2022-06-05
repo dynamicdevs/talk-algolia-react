@@ -16,45 +16,53 @@ const SortBy = ({
   });
 
   return (
-    <div className="lg:flex lg:justify-end">
-      <div className="mb-5 relative text-qu-dark">
-        <div
-          onClick={() => setList((_) => ({ ..._, isHidden: !_.isHidden }))}
-          className="py-2 px-6 flex justify-between items-center 
+    <div className="relative">
+      <div
+        onClick={() => setList((_) => ({ ..._, isHidden: !_.isHidden }))}
+        className="py-2 px-6 flex justify-between items-center 
           rounded-full shadow-md lg:space-x-12 font-bold bg-white cursor-pointer"
-        >
-          <div>Sort by: {list.currentLabel}</div>
-          {!list.isHidden ? (
-            <SymbolIcon name="arrow_up" iconClass="symbol-md" type="solid" />
-          ) : (
-            <SymbolIcon name="arrow_down" iconClass="symbol-md" type="solid" />
-          )}
-        </div>
-        {!list.isHidden && (
-          <ul
-            className="absolute top-[39px] left-0 z-10 
-            w-full shadow-md rounded-md bg-white"
-          >
-            {items.map((item: any) => (
-              <li
-                key={item.value}
-                className={`py-2 px-6 hover:bg-dy-input cursor-pointer 
-                ${item.isRefined ? "font-bold" : ""}`}
-                onClick={(event) => {
-                  event.preventDefault();
-                  refine(item.value);
-                  setList((_) => ({
-                    currentLabel: item.label,
-                    isHidden: true,
-                  }));
-                }}
-              >
-                {item.label}
-              </li>
-            ))}
-          </ul>
+      >
+        <div className="flex-grow">Sort by: {list.currentLabel}</div>
+        {!list.isHidden ? (
+          <SymbolIcon
+            name="arrow_up"
+            iconClass="symbol-md"
+            type="solid"
+            className="flex-shrink-0"
+          />
+        ) : (
+          <SymbolIcon
+            name="arrow_down"
+            iconClass="symbol-md"
+            type="solid"
+            className="flex-shrink-0"
+          />
         )}
       </div>
+      {!list.isHidden && (
+        <ul
+          className="absolute top-[39px] left-0 z-10 
+            w-full shadow-md rounded-md bg-white"
+        >
+          {items.map((item: any) => (
+            <li
+              key={item.value}
+              className={`py-2 px-6 hover:bg-dy-input cursor-pointer 
+                ${item.isRefined ? "font-bold" : ""}`}
+              onClick={(event) => {
+                event.preventDefault();
+                refine(item.value);
+                setList((_) => ({
+                  currentLabel: item.label,
+                  isHidden: true,
+                }));
+              }}
+            >
+              {item.label}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
