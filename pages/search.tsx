@@ -1,18 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {
-  InstantSearch,
-  SearchBox,
-  Pagination,
-  Configure,
-} from "react-instantsearch-dom";
+import { InstantSearch, SearchBox, Configure } from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
-import {
-  CustomHits,
-  Filters,
-  CustomSortBy,
-  CustomCurrentRefinements,
-} from "@/components";
+import { Filters, CustomStateResults } from "@/components";
 
 const searchClient = instantMeiliSearch(
   `${process.env.NEXT_PUBLIC_MEILISEARCH_BASEURL}`,
@@ -48,27 +38,7 @@ const Search = () => {
               <Filters />
             </div>
             <div className="flex-grow">
-              <div className="mb-5 flex justify-end">
-                <CustomSortBy
-                  defaultRefinement="steam-video-games"
-                  items={[
-                    { value: "steam-video-games", label: "Relevant" },
-                    {
-                      value: "steam-video-games:recommendationCount:desc",
-                      label: "Most Recommended",
-                    },
-                    {
-                      value: "steam-video-games:recommendationCount:asc",
-                      label: "Least Recommended",
-                    },
-                  ]}
-                />
-              </div>
-              <CustomCurrentRefinements />
-              <div className="mb-5 grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                <CustomHits />
-              </div>
-              <Pagination showLast />
+              <CustomStateResults />
             </div>
           </div>
         </InstantSearch>

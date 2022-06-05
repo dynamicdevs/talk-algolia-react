@@ -4,7 +4,7 @@ import { connectRefinementList } from "react-instantsearch-dom";
 
 const RefinementList = ({ items, refine }: { items: any; refine: any }) => {
   return (
-    <ul>
+    <ul className="space-y-1">
       {items.map((item: any, index: number) => (
         <li
           key={index}
@@ -37,7 +37,7 @@ export const SelectRefinementList = ({
     <div>
       <div
         onClick={() => setIsFiltersListHidden((_) => !_)}
-        className="mb-1 px-6 py-4 flex items-center rounded-full 
+        className="mb-2 px-6 py-4 flex items-center rounded-full 
         text-dy-purple bg-white shadow-md cursor-pointer"
       >
         <div className="flex-grow font-bold">{label}</div>

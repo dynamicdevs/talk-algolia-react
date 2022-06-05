@@ -11,7 +11,7 @@ const headerButtons = [
 export const Header = () => {
   return (
     <div
-      className="sticky top-0 left-0 py-2 px-4
+      className="sticky z-50 top-0 left-0 py-2 px-4
       flex justify-between items-center shadow-md bg-white"
     >
       <div className="flex items-center space-x-4">
