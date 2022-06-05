@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { InstantSearch, SearchBox } from "react-instantsearch-dom";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 import {
@@ -13,14 +15,30 @@ const searchClient = instantMeiliSearch(
 );
 
 const Search = () => {
+  const router = useRouter();
+  const [searchState, setSearchState] = useState<any>(router.query);
+
+  const onSearchStateChange = (updatedSearchState: any) => {
+    console.log("onSearchStateChange");
+    setSearchState(updatedSearchState);
+  };
+
+  useEffect(() => {
+    console.log("useEffect");
+    onSearchStateChange(router.query);
+  }, [router]);
+
   return (
     <>
       <div>
+        <div>{JSON.stringify(router.query)}</div>
         <InstantSearch
           indexName="steam-video-games"
           searchClient={searchClient}
+          searchState={searchState}
+          onSearchStateChange={onSearchStateChange}
         >
-          <SearchBox />
+          <SearchBox className="hidden" />
           <div className="flex space-x-5">
             <div className="flex-shrink-0 w-80 space-y-3">
               <Filters />
