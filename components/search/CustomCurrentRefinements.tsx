@@ -1,9 +1,14 @@
 import { SymbolIcon } from "@dynamic-devs/symbol-react";
 import { connectCurrentRefinements } from "react-instantsearch-dom";
+import { CustomClearRefinements } from "./CustomClearRefinements";
 
 const CurrentRefinements = ({ items, refine }: { items: any; refine: any }) => {
   return (
-    <div className="mb-5 flex flex-wrap items-center space-x-3">
+    <div
+      className={`${
+        !!items.length && "mb-5"
+      } flex flex-wrap items-center space-x-3`}
+    >
       {items.map((item: any) => (
         <>
           {item.items && (
@@ -35,6 +40,7 @@ const CurrentRefinements = ({ items, refine }: { items: any; refine: any }) => {
           )}
         </>
       ))}
+      <CustomClearRefinements />
     </div>
   );
 };
